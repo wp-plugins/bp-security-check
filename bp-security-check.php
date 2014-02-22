@@ -6,7 +6,7 @@
  * Description: Help combat spam registrations by forcing the user to answer a simple math sum while registering for your BuddyPress-powered site
  * Author:      Shea Bunge
  * Author URI:  http://bungeshea.com
- * Version:     1.1.0
+ * Version:     1.1.0.1
  * License:     MIT
  * License URI: http://opensource.org/licenses/MIT
  */
@@ -14,7 +14,7 @@
 /**
  * Adds a maths sum to the BuddyPress registration page that the user
  * must answer correctly before registering
- * @version 1.1.0
+ * @version 1.1.0.1
  * @license http://opensource.org/licenses/MIT MIT
  * @author Shea Bunge (http://bungeshea.com)
  */
@@ -152,4 +152,4 @@ function bp_security_check_init() {
 	$GLOBALS['bp_security_check'] = new BuddyPress_Security_Check( $prefix );
 }
 
-add_action( 'bp_init', 'buddypress_security_check_init' );
+add_action( 'bp_init', 'bp_security_check_init' );
