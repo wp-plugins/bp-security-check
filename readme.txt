@@ -1,8 +1,8 @@
 === BuddyPress Security Check ===
 Contributors: bungeshea
 Tags: math, registration, buddypress, security, anti-spam
-Tested up to: 3.9.1
-Stable tag: 1.2.0
+Tested up to: 4.0
+Stable tag: 1.3.0
 License: MIT
 License URI: http://opensource.org/licences/MIT
 Donate link: http://bungeshea.com/donate/
@@ -15,6 +15,15 @@ This plugin will add a field to the BuddyPress registration form where the user 
 
 You can learn more at the [plugin's website](http://bungeshea.com/plugins/bp-security-check/), or contribute to this plugin's development on [GitHub](https://github.com/bungeshea/bp-security-check)
 
+= Translations =
+
+Thanks to the awesome work of the following translators, this plugin can be used in these languages:
+
+* **Hungarian** thanks to Laszlo Espadas
+* **Brazilian Portuguese** thanks to Renato Alves
+* **Danish** thanks to Andreas Bjørn Hassing Nielsen
+* **Italian** thanks to [Nicole Curioni](http://nicolecurioni.com/)
+
 == Installation ==
 
 This plugin extends the functionality of [BuddyPress](http://wordpress.org/plugins/buddypress), which must be installed for this plugin to work
@@ -24,6 +33,11 @@ This plugin extends the functionality of [BuddyPress](http://wordpress.org/plugi
 3. Done! The plugin has no settings to configure, just install and activate
 
 == Changelog ==
+
+= 1.3.0 =
+* Added Danish translation by Andreas Bjørn Hassing Nielsen
+* Added Italian translation by [Nicole Curioni](http://nicolecurioni.com/)
+* Made transient names unique to prevent race conditions
 
 = 1.2.0 =
 * Added Hungarian translation by Laszlo Espadas

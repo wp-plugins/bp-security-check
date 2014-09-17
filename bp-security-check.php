@@ -6,7 +6,7 @@
  * Description: Help combat spam registrations by forcing the user to answer a simple math sum while registering for your BuddyPress-powered site
  * Author:      Shea Bunge
  * Author URI:  http://bungeshea.com
- * Version:     1.2.0
+ * Version:     1.3.0
  * License:     MIT
  * License URI: http://opensource.org/licenses/MIT
  * Text Domain: bp-security-check
@@ -16,7 +16,7 @@
 /**
  * Adds a maths sum to the BuddyPress registration page that the user
  * must answer correctly before registering
- * @version 1.2.0
+ * @version 1.3.0
  * @license http://opensource.org/licenses/MIT MIT
  * @author Shea Bunge (http://bungeshea.com)
  */
@@ -36,7 +36,8 @@ add_action( 'plugins_loaded', 'bp_security_check_load_textdomain' );
 function bp_security_check_validate() {
 	global $bp;
 
-	$sum = get_transient( 'bp-security-check' );
+	$uid = $_POST['bp-security-check-id'];
+	$sum = get_transient( 'bp-security-check_' . $uid );
 
 	$a  = $sum[0];
 	$op = $sum[1];
@@ -63,7 +64,7 @@ function bp_security_check_validate() {
 
 	/* Clean up the transient if the answer was correct */
 	else {
-		delete_transient( 'bp-security-check' );
+		delete_transient( 'bp-security-check' . $uid );
 	}
 }
 
@@ -99,8 +100,11 @@ function bp_security_check_field() {
 		}
 	}
 
+	/* Generate a unique ID to save the sum information under */
+	$uid = uniqid();
+
 	/* Save sum information (expiry = 12 hours) */
-	set_transient( 'bp-security-check', array( $a, $op, $b ), 12 * 60 * 60 );
+	set_transient( 'bp-security-check_' . $uid, array( $a, $op, $b ), 12 * 60 * 60 );
 
 	?>
 	<div style="float: left; clear: left; width: 48%; margin: 12px 0;" class="security-question-section">
@@ -127,6 +131,7 @@ function bp_security_check_field() {
 
 			?>
 		</label>
+		<input type="hidden" name="bp-security-check-id" value="<?php echo $uid; ?>" />
 		<input type="number" name="bp-security-check" required="required" />
 	</div>
 	<?php
